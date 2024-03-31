@@ -1,12 +1,14 @@
 #! /usr/bin/env node
 import { Command } from "commander"
-const program = new Command()
+import { input } from "@inquirer/prompts"
 
 import { addTask } from "../lib/add.js"
 import { listTasks } from "../lib/list.js"
 import { removeTask } from "../lib/remove.js"
 import { editTask } from "../lib/edit.js"
 
+
+const program = new Command()
 program.name("mtask").description("Add school tasks.").version("0.2.0")
 
 program
@@ -21,7 +23,15 @@ program
     .option("--date <date>", "specify date to assignment")
     .option("--desc <string>", "more detailed information about the assignment")
     .action(async (task, options) => {
-        const { date, desc } = options
+        let { date, desc } = options
+        
+        if (!desc) {
+            desc = await input({ message: "Insert task description:" })
+        }
+
+        if (!date) {
+            date = await input({ message: "Insert date to assignment:" })
+        }
 
         await addTask(task, date, desc)
     })
