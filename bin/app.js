@@ -32,7 +32,9 @@ program
 		}
 
 		if (!date) {
-			date = await input({ message: "Insert date to assignment:" })
+			date = await input({
+				message: "Insert date to assignment (dd/mm/yyyy):",
+			})
 		}
 
 		await addTask(task, date, desc)
