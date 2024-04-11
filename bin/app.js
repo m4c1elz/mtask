@@ -5,7 +5,9 @@ import { input } from "@inquirer/prompts"
 import { addTask } from "../lib/add.js"
 import { listTasks } from "../lib/list.js"
 import { removeTask } from "../lib/remove.js"
+import { removeAllTasks } from "../lib/removeAll.js"
 import { editTask } from "../lib/edit.js"
+import { remove } from "fs-extra"
 
 const program = new Command()
 program.name("mtask").description("Add school tasks.").version("0.2.0")
@@ -42,8 +44,16 @@ program
 	.alias("rm")
 	.description("removes a task")
 	.argument("<id>", "the ID of the task to remove")
-	.action(async (id) => {
+	.action(async (id, options) => {
 		await removeTask(id)
+	})
+
+program
+	.command("removeall")
+	.alias("rmall")
+	.description("remove all tasks")
+	.action(async () => {
+		await removeAllTasks()
 	})
 
 program
