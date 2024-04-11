@@ -7,7 +7,6 @@ import { listTasks } from "../lib/list.js"
 import { removeTask } from "../lib/remove.js"
 import { removeAllTasks } from "../lib/removeAll.js"
 import { editTask } from "../lib/edit.js"
-import { remove } from "fs-extra"
 
 const program = new Command()
 program.name("mtask").description("Add school tasks.").version("0.2.0")
