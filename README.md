@@ -38,7 +38,7 @@ What if you already did all of 'em?
 Well, you can remove all with:
 `mtask removeall`
 
-or use the ``mtask rmall` alias.
+or use the `mtask rmall` alias.
 
 ### Editing an existing task
 
