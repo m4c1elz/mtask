@@ -76,9 +76,12 @@ program
     .alias("s")
     .description("sync completed tasks")
     .action(async () => {
-        spinner.start({text: "Syncing..."})
-        await syncTasks()
-        spinner.success({text: "Success"})
+        spinner.start({ text: "Syncing..." })
+        await syncTasks().catch(e => {
+            spinner.error({ text: "There was an error syncing tasks." })
+            process.exit(1)
+        })
+        spinner.success({ text: "Tasks synced with success!" })
     })
 
 program.parse()
